@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ciApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Jackpot</title>
+    <script src="libs/pixi.js/bin/pixi.js"></script>
+</head>
+<body>
+<script>
+var renderer = PIXI.autoDetectRenderer(800, 600,{backgroundColor : 0x1099bb});
+document.body.appendChild(renderer.view);
+
+// create the root of the scene graph
+var stage = new PIXI.Container();
+
+// create a texture from an image path
+var texture = PIXI.Texture.fromImage('images/bunny.png');
+
+// create a new Sprite using the texture
+var helloWorld = new PIXI.Text('Hello World!', { font: '35px Snippet', fill: 'white', align: 'left' });
+var bunny = new PIXI.Sprite(texture);
+
+// center the sprite's anchor point
+bunny.anchor.x = 0.5;
+bunny.anchor.y = 0.5;
+
+// move the sprite to the center of the screen
+bunny.position.x = 200;
+bunny.position.y = 150;
+
+stage.addChild(bunny);
+stage.addChild(helloWorld);
+
+// start animating
+animate();
+function animate() {
+    requestAnimationFrame(animate);
+
+    // just for fun, let's rotate mr rabbit a little
+    bunny.x += 0.1;
+    helloWorld.x += 1;
+
+    // render the container
+    renderer.render(stage);
+}
+</script>
+</body>
+</html>
